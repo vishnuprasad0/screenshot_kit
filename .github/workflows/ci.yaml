@@ -27,6 +27,8 @@ jobs:
         with:
           channel: stable
       - run: flutter pub get
+      # pana converts the pubspec screenshots to WebP, as pub.dev does.
+      - run: sudo apt-get update && sudo apt-get install -y webp
       - run: dart pub global activate pana
       - run: dart pub global run pana --no-warning --exit-code-threshold 0 .
 

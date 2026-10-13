@@ -85,7 +85,7 @@ Future<CaptureResult> captureScrollView(
       previous = shown;
       offset = shown + viewport < end ? shown + viewport : end;
     }
-    return encodePixels(
+    return await encodePixels(
       canvas.toPixels(),
       format: options.format,
       quality: options.quality,
