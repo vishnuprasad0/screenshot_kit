@@ -1,0 +1,56 @@
+name: screenshot_kit
+description: >-
+  Capture widgets, long scroll views and the whole screen, including maps and
+  web views, as PNG or JPEG. A maintained, drop-in successor to screenshot.
+version: 1.0.0
+repository: https://github.com/vishnuprasad0/screenshot_kit
+issue_tracker: https://github.com/vishnuprasad0/screenshot_kit/issues
+
+topics:
+  - screenshot
+  - image
+  - capture
+  - widget
+  - share
+
+screenshots:
+  - description: A 200 row list captured as one 402 x 13622 px image.
+    path: doc/media/long_list_preview.png
+  - description: A share card built off-screen and captured.
+    path: doc/media/offscreen_preview.png
+  - description: The screen captured together with a native WebView.
+    path: doc/media/webview_preview.png
+
+environment:
+  sdk: ^3.8.0
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  image: ^4.2.0
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.vishnuprasadkp.screenshot_kit
+        pluginClass: ScreenshotKitPlugin
+      ios:
+        pluginClass: ScreenshotKitPlugin
+      macos:
+        dartPluginClass: ScreenshotKitDesktop
+      windows:
+        dartPluginClass: ScreenshotKitDesktop
+      linux:
+        dartPluginClass: ScreenshotKitDesktop
+      web:
+        pluginClass: ScreenshotKitWeb
+        fileName: src/native/web_plugin.dart
