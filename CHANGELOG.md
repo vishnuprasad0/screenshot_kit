@@ -1,3 +1,13 @@
+## 1.0.1 - 2026-11-18
+- Docs: README now leads with tiled tall-widget capture and includes a measured
+  comparison on Impeller/Vulkan, including the exact 16,384 px single-pass
+  cutoff and how `pixelRatio` multiplies it.
+- Docs: the migration section states explicitly that migrating does not add
+  platform-view capture; that requires the separate `ScreenshotKit.captureScreen`
+  call, which is Android and iOS only.
+- Docs: fixed dartdoc references that could not resolve from this package.
+- `screenshot.dart` imports `package:flutter/widgets.dart` rather than
+  `material.dart`, narrowing the import surface. No API change.
 ## 1.0.0 - 2026-10-13
 
 First release of `screenshot_kit`, an API-compatible alternative to the

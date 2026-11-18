@@ -2,7 +2,7 @@ name: screenshot_kit
 description: >-
   Capture widgets, long scroll views and the whole screen, including maps and
   web views, as PNG or JPEG. A maintained, drop-in successor to screenshot.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/vishnuprasad0/screenshot_kit
 issue_tracker: https://github.com/vishnuprasad0/screenshot_kit/issues
 
