@@ -1,7 +1,8 @@
 ## 1.0.0 - 2026-10-13
 
-First release of `screenshot_kit`, a maintained successor to the abandoned
-`screenshot` package. Based on screenshot 3.0.0 by Sachin Ganesh (MIT).
+First release of `screenshot_kit`, an API-compatible alternative to the
+`screenshot` package with tiled capture for tall widgets. Based on
+screenshot 3.0.0 by Sachin Ganesh (MIT).
 
 Compatible with screenshot 3.0.0: `Screenshot` and `ScreenshotController` keep
 their method signatures, so migrating means changing the dependency and the

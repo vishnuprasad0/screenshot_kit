@@ -1,10 +1,27 @@
 # screenshot_kit
 
-Capture widgets, long scroll views and the whole screen, including maps and web views, as PNG or JPEG. A maintained, drop-in successor to [`screenshot`](https://pub.dev/packages/screenshot).
+Capture widgets, long scroll views and the whole screen as PNG or JPEG, using the same API as [`screenshot`](https://pub.dev/packages/screenshot) 3.0.0.
+
+**What it does differently: tall captures come out whole.** A single-pass widget capture is clipped at the GPU's maximum texture size, so a tall widget is silently truncated — and its width is warped in the process, because the whole image is scaled to fit. `screenshot_kit` renders in 4,096 px tiles instead, so it never asks the GPU for an oversized render target.
 
 [![pub package](https://img.shields.io/pub/v/screenshot_kit.svg)](https://pub.dev/packages/screenshot_kit)
 [![CI](https://github.com/vishnuprasad0/screenshot_kit/actions/workflows/ci.yaml/badge.svg)](https://github.com/vishnuprasad0/screenshot_kit/actions/workflows/ci.yaml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+## Measured
+
+Both packages capturing the same widget, on an Android 16 emulator with Impeller/Vulkan and Flutter 3.50. The widget is a column of numbered bands ending in a marker band, and "bottom reached" is asserted by sampling pixels in the returned image rather than by eye.
+
+| Height (lp) | Pixel ratio | `screenshot` | `screenshot_kit` |
+|---|---|---|---|
+| 4,000 | 3.0 | 900x12000, complete | 900x12000, complete |
+| 8,000 | 3.0 | **614x16384 — 7,616 px missing, width warped** | 900x24000, complete |
+| 16,000 | 3.0 | **307x16384 — 31,616 px missing** | 900x48000, complete |
+| 32,000 | 1.0 | **153x16384 — 15,616 px missing** | 300x32000, complete |
+
+The cutoff is exactly 16,384 physical pixels on that device: its `GL_MAX_TEXTURE_SIZE` / `maxImageDimension2D`. Because the limit is in *physical* pixels, `pixelRatio` multiplies it — a widget only ~5,460 lp tall already crosses it at 3.0x density. Devices with 4,096 or 8,192 px limits (some older Adreno and Mali GPUs) hit it much sooner.
+
+Above roughly 50,000 physical pixels `screenshot_kit` throws `ScreenshotException` with `ScreenshotFailure.tooLarge` during encoding rather than returning a truncated image. Lower `pixelRatio` or set `maxWidth` / `maxHeight` for captures that large.
 
 ## Demo
 
@@ -266,6 +283,8 @@ What behaves differently:
 - **`delay` is a maximum.** On the off-screen methods, `delay` is the longest time to wait for images to load. The capture continues as soon as they have loaded instead of always waiting.
 - **More is inherited.** When you pass a `context`, the widget is rendered inside your tree at a `ScreenshotHost` or `Overlay`, so providers, localizations and theme work.
 - **Long widgets are tiled.** Very tall widgets are no longer truncated.
+
+What migrating does **not** give you: platform views. If you are here because a Google Map, web view, video or ad comes out blank, changing the dependency will not fix that on its own — widget captures cannot include platform views in either package. That needs `ScreenshotKit.captureScreen`, which is a different call, captures the whole window rather than one widget, and works only on Android and iOS. See [Capture the screen including maps and web views](#capture-the-screen-including-maps-and-web-views).
 
 ## Platform support
 
