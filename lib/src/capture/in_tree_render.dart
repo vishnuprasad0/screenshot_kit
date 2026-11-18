@@ -1,5 +1,10 @@
 import 'dart:async';
 
+// Material is required here: captures are wrapped in a transparent Material so
+// that Material-dependent widgets render correctly off-screen. Migrating to
+// package:material_ui would raise this package's minimum Flutter version, so the
+// deprecation is suppressed at the import until that migration is deliberate.
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -10,7 +15,7 @@ import 'settle.dart';
 /// Marks where off-screen captures are rendered, so captured widgets can
 /// read providers and other inherited widgets declared above this point.
 ///
-/// Without a host, `captureWidget` renders into the nearest [Overlay], which
+/// Without a host, `captureWidget` renders into the nearest `Overlay`, which
 /// usually sits above your routes. Wrap a page in a [ScreenshotHost] when the
 /// captured widget needs something provided inside that page:
 ///
@@ -48,7 +53,7 @@ class _ScreenshotHostState extends State<ScreenshotHost> {
   );
 }
 
-/// Renders [widget] off-screen at the nearest [ScreenshotHost] or [Overlay]
+/// Renders [widget] off-screen at the nearest [ScreenshotHost] or `Overlay`
 /// above [context] and runs [capture] once it is painted and its images
 /// have loaded. Returns null when there is neither, so the caller can fall
 /// back to an isolated render.

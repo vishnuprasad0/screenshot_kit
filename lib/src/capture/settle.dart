@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 
-/// Image providers shown by [Image] widgets and box decorations below
+/// Image providers shown by `Image` widgets and box decorations below
 /// [root].
 List<ImageProvider<Object>> collectImageProviders(Element root) {
   final providers = <ImageProvider<Object>>[];

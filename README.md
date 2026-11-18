@@ -280,6 +280,14 @@ What behaves differently:
 
 `captureAndSave` is not available on the web.
 
+## Example
+
+See the [example](example) directory for complete, runnable sample applications demonstrating:
+- In-tree and off-screen widget capture
+- Long scrollable lists and long receipt widgets
+- Screen captures with embedded platform views
+- Format and quality configurations
+
 ## Limitations
 
 - Platform views (maps, web views, ads, video) are only captured by `ScreenshotKit.captureScreen`.

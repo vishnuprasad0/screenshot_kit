@@ -1,3 +1,7 @@
+// See the note in lib/src/capture/in_tree_render.dart: Material is needed for
+// these capture tests, and migrating to package:material_ui would raise the
+// package's minimum Flutter version.
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:screenshot_kit/screenshot_kit.dart';

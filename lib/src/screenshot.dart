@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'capture/capture_boundary.dart';
 import 'capture/capture_options.dart';
@@ -76,7 +76,7 @@ class ScreenshotController {
   /// Captures [widget] without showing it.
   ///
   /// With a [context], the widget is rendered off-screen at the nearest
-  /// [ScreenshotHost] or [Overlay] above it, so it can use your providers,
+  /// [ScreenshotHost] or `Overlay` above it, so it can use your providers,
   /// localizations, theme and media query. Without one it is rendered in an
   /// isolated pipeline that has none of those.
   ///
@@ -196,7 +196,7 @@ class ScreenshotController {
     }
   }
 
-  /// Captures the attached [Screenshot] widget as a [ui.Image], or returns
+  /// Captures the attached [Screenshot] widget as a `ui.Image`, or returns
   /// null when it is not in the tree or not laid out yet. The caller must
   /// dispose the image.
   ///
@@ -242,7 +242,7 @@ class ScreenshotController {
     return result.bytes;
   }
 
-  /// Captures [widget] without showing it and returns it as a [ui.Image],
+  /// Captures [widget] without showing it and returns it as a `ui.Image`,
   /// which the caller must dispose. See [captureFromWidget].
   static Future<ui.Image> widgetToUiImage(
     Widget widget, {
@@ -287,7 +287,7 @@ class ScreenshotController {
     return result.bytes;
   }
 
-  /// Captures [widget] at its natural size and returns it as a [ui.Image],
+  /// Captures [widget] at its natural size and returns it as a `ui.Image`,
   /// which the caller must dispose. See [captureFromLongWidget].
   Future<ui.Image> longWidgetToUiImage(
     Widget widget, {

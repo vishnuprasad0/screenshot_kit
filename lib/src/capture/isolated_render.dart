@@ -1,5 +1,10 @@
 import 'dart:ui' as ui;
 
+// Material is required here: captures are wrapped in a transparent Material so
+// that Material-dependent widgets render correctly off-screen. Migrating to
+// package:material_ui would raise this package's minimum Flutter version, so the
+// deprecation is suppressed at the import until that migration is deliberate.
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -130,7 +135,7 @@ class _MeasureRoot extends RenderBox
 
 /// Wraps [child] with what can be copied from [context]: themes, text style,
 /// media query, localizations and text direction, on a transparent
-/// [Material].
+/// `Material`.
 Widget inheritContext(BuildContext context, Widget child) {
   Widget result = Material(type: MaterialType.transparency, child: child);
   if (Localizations.maybeLocaleOf(context) != null) {

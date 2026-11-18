@@ -1,4 +1,4 @@
-## 1.0.0
+## 1.0.0 - 2026-10-13
 
 First release of `screenshot_kit`, a maintained successor to the abandoned
 `screenshot` package. Based on screenshot 3.0.0 by Sachin Ganesh (MIT).
